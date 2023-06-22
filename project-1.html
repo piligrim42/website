@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>projects</title>
+    <link rel="stylesheet" href="projects.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- nav -->
+      <div class="nav">
+        <div class="main" ><a href="index.html" style="text-decoration: none;"> На главную<br><br></a></div>
+        <div class="next">
+          <a href="project-2.html">
+            <svg viewBox="0 0 50 9">
+            <path d="m0 4.5 5-3m-5 3 5 3m45-3h-77"></path>
+          </svg></a>
+        </div>
+      </div>
+
+      <!-- hero -->
+      <div class="project-hero">
+        
+        <div class="project">
+          <div class="project-title">
+            <h1>RealtyShare</h1>
+            <br/>PHP/Laravel, HTML, CSS, JavaScript
+          </div>
+          <div class="project-look">
+            <a href="https://www.realtyshare.io/">
+            <img src="images/realtyshare.png" alt=""/></a>
+          </div>
+        </div>
+        
+        
+        
+        
+      </div>
+
+      <!-- overlay -->
+      <div class="overlay"></div>
+
+      <!-- project description -->
+      <div class="project-description">
+        <div class="desc">
+          <p style="font-family: 'IBM Plex Mono', monospace; font-weight: 300;">
+            
+            Веб-приложение для инвестирования в аренду недвижимости. 
+            Есть калькулятор, вычисляющий сложный процент, админка, панель управления пользователя и тд.   
+              
+          </p>
+          <div class="link"><a href="https://www.realtyshare.io/" style="color: #141414;">Посмотреть сайт</a></div>
+        </div>
+        <div class="front-view view">
+          <div class="sketch-img"><img src="images/realtyshare-1.png" alt="" /></div>
+          <br />
+          <div class="sketch-title">
+            <span></span> <br />
+          </div>
+        </div>
+        <div class="side-view view">
+          <div class="sketch-title">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 300;">Панель управления юзера</span> <br />
+          </div>
+          <br />
+          <div class="sketch-img"><img src="images/realtyshare-2.png" alt="" /></div>
+        </div>
+        <div class="close-desc" id="close">
+          <ion-icon name="close-sharp"></ion-icon>
+        </div>
+      </div>
+
+      <!-- footer -->
+      <div class="project-info">
+        <div class="project-nav">
+          <div class="project-img">
+            <a href="https://www.realtyshare.io/">
+              <img src="images/realtyshare.png" alt="" /></a>
+          </div>
+          
+          
+          <div class="project-nav-links">
+            <button id="more">Подробнее о проекте</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </body>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    function showInfo() {
+      revealDescription();
+
+      const showBtn = document.getElementById("more");
+      showBtn.onclick = function (e) {
+        tl.reversed(!tl.reversed());
+      };
+
+      const closeBtn = document.getElementById("close");
+      closeBtn.onclick = function (e) {
+        tl.reversed(!tl.reversed());
+      };
+    }
+
+    showInfo();
+
+    function revealDescription() {
+      tl.to(".project-description", 1, {
+        bottom: 0,
+        ease: "power2.inOut",
+      });
+
+      tl.to(
+        ".overlay",
+        1,
+        {
+          opacity: 1,
+          ease: "power2.inOut",
+        },
+        "-=1"
+      );
+
+      tl.to(
+        ".project-hero",
+        1,
+        {
+          bottom: "55vh",
+          ease: "power2.inOut",
+        },
+        "-=0.9"
+      ).reverse();
+    }
+
+    gsap.from(".nav > *", 1, {
+      y: 60,
+      opacity: 0,
+      ease: "power4.inOut",
+      stagger: {
+        amount: 0.2,
+      },
+    });
+
+    gsap.from(".project-hero > div, .project-info", 1, {
+      y: 60,
+      opacity: 0,
+      ease: "power4.inOut",
+      stagger: {
+        amount: 0.4,
+      },
+    });
+
+    gsap.from(".project-look img", 2, {
+      x: 100,
+      opacity: 0,
+      ease: "power3.inOut",
+      delay: 0.5,
+      stagger: {
+        amount: 0.4,
+      },
+    });
+  </script>
+</html>
